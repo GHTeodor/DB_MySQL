@@ -90,8 +90,8 @@
     ])
 
 ********** Не працюючих батьків влаштувати офіціантами (підказка: гуглимо "arrayFilters")
-    db.getCollection('students').findOneAndUpdate(
-        {$and:[{'parents':{$ne:null}},{'parents.profession':null}]},
-        {$set:{'parents.$[parents].profession':'server'}},
-        {arrayFilters: [{ 'parents.profession': null}], new: true }
-    )
+        db.getCollection('students').updateMany(
+            {$and:[{'parents':{$ne:null}},{'parents.profession':null}]},
+            {$set:{'parents.$[parents].profession':'server'}},
+            {arrayFilters: [{ 'parents.profession': null}], new: true }
+        )
