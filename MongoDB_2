@@ -91,7 +91,7 @@
 
 ********** Не працюючих батьків влаштувати офіціантами (підказка: гуглимо "arrayFilters")
     db.getCollection('students').findOneAndUpdate(
-        {'parents.profession':null},
+        {$and:[{'parents':{$ne:null}},{'parents.profession':null}]},
         {$set:{'parents.$[parents].profession':'server'}},
         {arrayFilters: [{ 'parents.profession': null}], new: true }
     )
